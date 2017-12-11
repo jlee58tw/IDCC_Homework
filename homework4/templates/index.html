@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% block body %}
+
+	<div class="container">
+
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-5 col-md-4 col-sm-3">
+	        
+			
+				{% if request.user.is_authenticated %}
+					<h2>Welcome, {{request.user}}</h2>
+				{% else %}
+					<p class="lead"><a href="/accounts/login/">please login!</a></p>
+				{% endif %}
+				
+          </div>
+    
+        </div>
+
+      </div>
+	  
+	</div>
+	
+{% endblock %}

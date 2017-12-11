@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block body %}
+
+	<script>//$.blockUI({ message: '<i class="fa fa-refresh fa-spin fa-3x"></i> '});  </script>
+	
+	<div class="container">
+		<h2>我的訂閱</h2>
+        <hr>		
+		<div id="result"></div>
+	</div>
+	
+{% endblock %}
+
+{% block scripts %}
+{% load staticfiles %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'js/getData.js' %}"></script>
+<script src="{% static 'js/csrf.js' %}"></script>
+<script>get_sub()</script>
+
+
+{% endblock %}

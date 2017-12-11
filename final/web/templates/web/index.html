@@ -1,0 +1,190 @@
+
+{% extends 'base.html' %}
+
+
+<!--slider---------------------------------------------------------------------------->
+{% block slider %}
+{% load staticfiles %}
+<script src="{% static 'js/jssor.slider.mini.js' %}"></script>
+<script>
+        jQuery(document).ready(function ($) {
+                       
+            var jssor_1_options = {
+              $AutoPlay: true,
+              $SlideDuration: 2000,
+              $SlideEasing: $Jease$.$OutQuint,
+              $CaptionSliderOptions: {
+                $Class: $JssorCaptionSlideo$,
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+            
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+            
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizing
+            function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 1920);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+            //responsive code end
+        });
+    </script>
+   <style>
+        /* jssor slider bullet navigator skin 05 css */
+        /*
+        .jssorb05 div           (normal)
+        .jssorb05 div:hover     (normal mouseover)
+        .jssorb05 .av           (active)
+        .jssorb05 .av:hover     (active mouseover)
+        .jssorb05 .dn           (mousedown)
+        */
+        .jssorb05 {
+            position: absolute;
+        }
+        .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+            position: absolute;
+            /* size of bullet elment */
+            width: 16px;
+            height: 16px;
+            background: url({% static 'img/b05.png' %}) no-repeat;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .jssorb05 div { background-position: -7px -7px; }
+        .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
+        .jssorb05 .av { background-position: -67px -7px; }
+        .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+
+        /* jssor slider arrow navigator skin 22 css */
+        /*
+        .jssora22l                  (normal)
+        .jssora22r                  (normal)
+        .jssora22l:hover            (normal mouseover)
+        .jssora22r:hover            (normal mouseover)
+        .jssora22l.jssora22ldn      (mousedown)
+        .jssora22r.jssora22rdn      (mousedown)
+        */
+        .jssora22l, .jssora22r {
+            display: block;
+            position: absolute;
+            /* size of arrow element */
+            width: 40px;
+            height: 58px;
+            cursor: pointer;
+            background: url({% static 'img/a22.png' %}) center center no-repeat;
+            overflow: hidden;
+        }
+        .jssora22l { background-position: -10px -31px; }
+        .jssora22r { background-position: -70px -31px; }
+        .jssora22l:hover { background-position: -130px -31px; }
+        .jssora22r:hover { background-position: -190px -31px; }
+        .jssora22l.jssora22ldn { background-position: -250px -31px; }
+        .jssora22r.jssora22rdn { background-position: -310px -31px; }
+    </style>
+
+    <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden; visibility: hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+            <div style="position:absolute;display:block;background:url({% static 'img/loading.gif' %}) no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+        </div>
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+            <div data-p="225.00" style="display: none;">
+                <img data-u="image" src={% static 'img/01.png' %} />
+				<div style="position: absolute; top: 130px; left: 130px; width: 480px; height: 120px; font-size: 50px; color: #ffffff; line-height: 60px;">Hi Ticket</div>
+				<div style="position: absolute; top: 200px; left: 130px; width: 480px; height: 120px; font-size: 30px; color: #ffffff; line-height: 38px;">在這裡</div>
+				<div style="position: absolute; top: 240px; left: 130px; width: 480px; height: 120px; font-size: 30px; color: #ffffff; line-height: 38px;">尋找 演唱會二手票券</div>
+				</div>   
+            <div data-p="225.00" style="display: none;">
+                <img data-u="image" src={% static 'img/02.png' %} />
+				<div style="position: absolute; top: 130px; left: 130px; width: 480px; height: 120px; font-size: 50px; color: #ffffff; line-height: 60px;">Hi Ticket</div>
+				<div style="position: absolute; top: 200px; left: 130px; width: 480px; height: 120px; font-size: 30px; color: #ffffff; line-height: 38px;">批踢踢票劵板盯盤系統</div>
+				<div style="position: absolute; top: 240px; left: 130px; width: 480px; height: 120px; font-size: 30px; color: #ffffff; line-height: 38px;">替你即時、準確追蹤二手票券</div>
+            </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
+            <!-- bullet navigator item prototype -->
+            <div data-u="prototype" style="width:16px;height:16px;"></div>
+        </div>
+        <!-- Arrow Navigator -->
+        <span data-u="arrowleft" class="jssora22l" style="top:0px;left:12px;width:40px;height:58px;" data-autocenter="2"></span>
+        <span data-u="arrowright" class="jssora22r" style="top:0px;right:12px;width:40px;height:58px;" data-autocenter="2"></span>
+        <a href="http://www.jssor.com" style="display:none">Bootstrap Carousel</a>
+    </div>
+{% endblock %}
+
+<!--body---------------------------------------------------------------------------->
+{% block body %}
+
+	<div class="container">
+        <div class="row">
+		
+			<div class="_container">
+				<div class="col-xs-12 col-sm-4 col-md-4 content_box">
+					<div class="well panel-default">
+						  <div class="panel-body">
+								<center><div  class="btn btn-primary"><i class="fa fa-music fa-5x"></i></div></center>
+								<center><h3>演唱會訊息彙整</h3></center>
+								<hr color="#dddddd" size="10" >
+								<center>以 "政府資料開放平台" 提供的演唱會開放資料為基礎，整合相關資訊。</center>
+						  </div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 content_box">
+					<div class="well panel-default">
+						  <div class="panel-body">
+								<center><div class="btn btn-primary"><i class="fa fa-ticket fa-5x"></i></div></center>
+								<center><h3>分析批踢踢票券版</h3></center>
+								<hr color="#dddddd" size="10" >
+								<center>透過程式分析批踢踢票券版上的貼文，自動歸類相關賣票訊息。</center>
+						  </div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 content_box">
+					<div class="well panel-default">
+						  <div class="panel-body">
+								<center><div class="btn btn-primary"><i class="fa fa-feed fa-5x"></i></div></center>
+								<center><h3>追蹤最新票劵消息</h3></center>
+								<hr color="#dddddd" size="10" >
+								<center>提供使用者訂閱特定演唱會貼文，以電子郵件通知最新訊息。</center>
+						  </div>
+					</div>
+				</div>
+
+			 </div>
+
+        </div>
+	</div>
+	
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'js/getData.js' %}"></script>
+<script src="{% static 'js/csrf.js' %}"></script>
+
+<script>
+				$('._container').masonry({        
+					itemSelector: '.content_box',
+				});
+</script>
+
+{% endblock %}

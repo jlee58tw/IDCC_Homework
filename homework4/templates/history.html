@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body %}
+{% load myfilter %}
+	
+	<script src=" {% static "js/Chart.js" %} "></script>
+	<div class="container">
+	
+      <div class="page-header" id="banner">
+        <div class="row">
+			
+			<div class="col-lg-12 col-md-12 col-sm-12">
+			
+				<!-- List of uploaded documents -->
+				<h2>{{res.0.0}} 歷史紀錄</h2>
+				<h6>資料區間：{% if res2 %} From {{res2.0.1}} to NOW{% else %}No data{% endif %}</h6>
+				<h5>總車位數：{{res.0.1}}</h5>
+				<br>
+				
+				<div style="width:100%">
+					<div>
+						<canvas id="canvas" ></canvas>
+					</div>
+				</div>
+						
+						
+				{% if res2 %}
+				<table class="table table-striped table-hover ">
+					
+					
+
+					
+					<script>
+						var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+						var lineChartData = {
+							labels : [
+							{% for b in res2 %} "{{b.1}}", {% endfor %}
+							],
+							datasets : [
+								{
+									label: "My Second dataset",
+									fillColor : "rgba(151,187,205,0.2)",
+									strokeColor : "rgba(151,187,205,1)",
+									pointColor : "rgba(151,187,205,1)",
+									pointStrokeColor : "#fff",
+									pointHighlightFill : "#fff",
+									pointHighlightStroke : "rgba(151,187,205,1)",
+									data : [
+									{% for b in res2 %} "{{b.0}}", {% endfor %}
+									]
+								}
+							]
+
+						}
+
+					//function(){
+						var ctx = document.getElementById("canvas").getContext("2d");
+						window.myLine = new Chart(ctx).Line(lineChartData, {
+							responsive: true
+						});
+					//}
+
+
+					</script>
+					
+					
+					
+				</table> 
+				{% else %}
+					<p>No data</p>
+				{% endif %}
+				
+			</div>
+    
+        </div>
+
+      </div>
+	  
+	</div>
+	
+
+	
+{% endblock %}

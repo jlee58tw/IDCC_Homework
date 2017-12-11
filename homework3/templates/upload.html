@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block body %}
+
+	<div class="container">
+	
+      <div class="page-header" id="banner">
+        <div class="row">
+			
+
+			<div class="col-lg-7 col-md-6 col-sm-5">
+	
+			
+			<!-- Upload form. Note enctype attribute! -->
+			
+			<form action"/upload/" method="post" enctype="multipart/form-data" class="form-horizontal" id="post-form">{% csrf_token %}
+			  <fieldset>
+				<legend>Create a new Job</legend>
+				
+				<div class="form-group">
+				  <label for="jobname" class="col-lg-2 control-label">Job name</label>
+				  <div class="col-lg-10">
+					{{ form.non_field_errors }}{{form.name.errors }}
+					<input type="text" class="form-control" id="id_name" name="name"  placeholder="Job name">
+				  </div>
+				</div>
+		
+				
+				<div class="form-group">
+				  <label for="textArea" class="col-lg-2 control-label">Mapper.py</label>
+				  <div class="col-lg-10 ">{{ form.non_field_errors }}
+					<p>{{form.file1.label_tag }}{{form.file1.help_text }}</p>
+					<p>{{form.file1.errors }}{{form.file1 }}</p>
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <label for="textArea" class="col-lg-2 control-label">Reducer.py</label>
+				  <div class="col-lg-10 ">
+					<p>{{form.file2.label_tag }}{{form.file2.help_text }}</p>
+					<p>{{form.file2.errors }}{{form.file2 }}</p>
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <label for="textArea" class="col-lg-2 control-label">Input file</label>
+				  <div class="col-lg-10 ">
+					<p>{{form.file3.label_tag }}{{form.file3.help_text }}</p>
+					<p>{{form.file3.errors }}{{form.file3 }}</p>
+				  </div>
+				</div>
+				
+				
+				<div class="form-group">
+				  <div class="col-lg-10 col-lg-offset-2">
+				  	<button type="submit" class="btn btn-default btn-primary" value="Post">Submit</button>
+					<button type="reset" class="btn ">Cancel</button>
+				  </div>
+				</div>
+				
+			  </fieldset>
+			</form>
+			
+			
+
+		
+			</div>
+    
+        </div>
+
+      </div>
+	  
+	</div>
+
+{% endblock %}
+
+{% block scripts %}
+{% load staticfiles %}
+<script src="{% static 'js/upload.js' %}"></script>
+{% endblock %}

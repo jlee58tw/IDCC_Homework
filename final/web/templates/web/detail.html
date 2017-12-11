@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+{% block body %}
+
+
+	<div class="container">
+		
+		{% if concert.0.process %}
+			<div><h2>{{concert.0.title}}/{{concert.0.singer}}</h2>
+			<span class="label label-danger">Online</span>&nbsp;<span class="label label-primary">機器人分析處理中</span></div><br>
+			<div><a href="/ticket2/{{concert.0.singerid}}" class="btn btn-info">立即查看PTT票劵</a></div>
+		{% else %}
+			<h2>{{concert.0.title}}</h2>
+			<span class="label label-info">Offline</span>&nbsp;<span class="label label-primary">機器人目前沒有分析此演唱會</span>
+		{% endif %}
+        <hr>		
+		
+		
+		
+	<div class="panel panel-default">
+
+		<iframe class="video w100" 
+				width  = "640" 
+				height = "360" 
+				src="//www.youtube.com/embed/{{concert.0.url_pic}}" 
+				frameborder="0" 
+				allowfullscreen>
+		</iframe>
+	<br>
+	  <div class="panel-heading">時間：{{concert.0.time}} </div>
+	  <div class="panel-body">地點：{{concert.0.locationName}}/{{concert.0.location}}  </div>
+	  <div class="panel-heading">票價：{{concert.0.price}} </div>
+	</div>
+
+		
+	</div>
+	
+{% endblock %}
+
+{% block scripts %}
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
+<script src="{% static 'js/getData.js' %}"></script>
+<script src="{% static 'js/csrf.js' %}"></script>
+
+{% endblock %}

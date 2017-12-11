@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hadoop web service</title>
+
+	{% load staticfiles %}
+	<!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" media="screen">
+    <link rel="stylesheet" href="{% static "css/custom.min.css" %}">
+
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">Hadoop web service</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+			<ul class="nav navbar-nav">
+				<li><a href="/job/">MyJob</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				{% if request.user.is_authenticated %}
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hi, {{request.user}} <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/accounts/logout/">Logout</a></li>
+						</ul>
+					</li>
+				{% else %}
+					<li><a href="/accounts/login/">Login</a></li>
+				{% endif %}
+			</ul>
+
+        </div>
+      </div>
+    </div>
+    {% block body %}{% endblock %}
+</body>
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+	{% block scripts %}{% endblock %}
+</html>

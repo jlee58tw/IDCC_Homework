@@ -1,0 +1,73 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+{% load staticfiles %}
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{% static "css/bootstrap-social.css" %}" media="screen">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<div class="container ">
+	<div class="well col-md-4 col-md-offset-4">
+
+		{% load socialaccount %}
+		{% providers_media_js %}
+		
+		 <a class="btn btn-block btn-social btn-facebook" href="{% provider_login_url "facebook" %}">
+			<span class="fa fa-facebook"></span> 使用 Facebook 登入
+		 </a>
+		 <a class="btn btn-block btn-social btn-google">
+			<span class="fa fa-google"></span> 使用 Google 登入
+		 </a>
+		 <hr size="1" color="#DDDDDD" border="0" height="1px"> 
+		<form class="login form-horizontal" method="POST" action="{% url 'account_login' %}">
+		  {% csrf_token %}
+
+				{{ form.non_field_errors }}
+				<div class="form-group">
+					{{ form.login.errors }}
+				  <label for="inputDefault" class="col-lg-3 control-label">帳號</label>
+				  <div class="col-lg-9">
+					<input class="form-control" autofocus="autofocus" id="id_login" maxlength="30" name="login" placeholder="帳號" type="text" />
+				  </div>
+				</div>
+				<div class="form-group">
+					{{ form.password.errors }}
+				  <label for="inputDefault" class="col-lg-3 control-label">密碼</label>
+				  <div class="col-lg-9">
+					<input class="form-control" id="id_password" name="password" placeholder="密碼" type="password" />
+				  </div>
+				</div>
+				<div class="form-group">
+					{{ form.remember.errors }}
+				  <label for="inputDefault" class="col-lg-3 control-label"></label>
+				  <div class="col-lg-9">
+					<input id="id_remember" name="remember" type="checkbox" /> 記住我
+				  </div>
+				</div>
+
+
+		  {% if redirect_field_value %}
+		  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+		  {% endif %}
+
+
+		<div class="form-group">
+			  <div class="col-lg-9 col-lg-offset-3">
+				<button class="primaryAction btn btn-default btn-primary" type="submit">{% trans "Sign In" %}</button>
+				<a class="button btn btn-primary" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+			  </div>
+			</div>
+
+		</form>
+		
+	</div>
+</div>
+
+{% endblock %}

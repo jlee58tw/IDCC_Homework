@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+{% block body %}
+
+	<div class="container">
+		<h2>PTT Drama & Ticket 板列表</h2><div class="pagination"></div>
+        <hr>		
+		<div id="add"></div>
+		<div id="result"></div>	 
+		<div class="pagination"></div>
+	</div>
+	
+{% endblock %}
+
+{% block scripts %}
+{% load staticfiles %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'js/getData.js' %}"></script>
+<script src="{% static 'js/csrf.js' %}"></script>
+<script>get_ptt(1)</script>
+
+{% endblock %}

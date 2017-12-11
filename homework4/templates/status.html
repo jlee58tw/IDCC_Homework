@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load myfilter %}
+	<div class="container">
+	
+      <div class="page-header" id="banner">
+        <div class="row">
+			
+			<div class="col-lg-12 col-md-12 col-sm-12">
+			
+				<!-- List of uploaded documents -->
+				<h2>Ubike各站資訊</h2>
+				<h6>資料更新時間：{{r.0.6}}</h6>
+				<br>
+				
+				{% if r %}
+				<table class="table table-striped table-hover ">
+					<thead>
+					
+					<tr class="active">
+						
+						<th>編號</th>
+						<th width="300px">站名</th>
+						<th width="200px">使用狀況 [可使用/總數量]</th>
+						<th></th>
+						<th>歷史紀錄</th>
+						
+					</tr>
+					</thead>
+					
+					{% for b in r %}
+					<tbody>				
+						<tr>
+							<td>{{b.0}}</td>
+							<td>{{b.1}}</td>
+							<td>
+								<div class="progress progress-striped active">
+								  <div class="progress-bar" style="width: {{b.3|divideToPercent:b.2}}%"></div>
+								</div>
+							</td>
+							<td>{{b.3}}/{{b.2}}</td>	
+							<td><a href="{{b.0}}" class="btn btn-primary btn-xs">歷史紀錄</a></td>
+						</tr>
+					</tbody>
+					{% endfor %}
+					
+				</table> 
+				{% else %}
+					<p>No data</p>
+				{% endif %}
+				
+			</div>
+    
+        </div>
+
+      </div>
+	  
+	</div>
+	
+{% endblock %}

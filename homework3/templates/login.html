@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <div class="container">
+
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-8 col-md-7 col-sm6">
+	        <h1>Login</h1>
+            <p class="lead">Please input your account and password</p>
+			
+			
+			<form class="form-horizontal" action="" method="post"> {% csrf_token %} 
+				<fieldset>
+					
+					<div class="form-group">
+					  <label for="inputEmail" class="col-lg-2 control-label">Account</label>
+					  <div class="col-lg-10">
+						<input type="text" class="form-control" name="username" value="" id="username" placeholder="Account">
+					  </div>
+					</div>
+					<div class="form-group">
+					  <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+					  <div class="col-lg-10">
+						<input type="password" class="form-control" name="password" value="" id="password" placeholder="Password">
+					  </div>
+					</div>
+					<div class="form-group">
+					  <div class="col-lg-10 col-lg-offset-2">
+							<button type="submit" value="login" class="btn btn-primary btn-default">Submit</button>
+							<button type="reset" class="btn">Cancel</button>
+					  </div>
+					</div>
+				</fieldset>
+			</form>
+
+          </div>
+    
+        </div>
+
+      </div>
+	  
+	</div>
+	
+{% endblock %}

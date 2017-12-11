@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% block body %}
+
+	<div class="container">
+
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-8 col-md-7 col-sm6">
+	        
+			
+				{% if request.user.is_authenticated %}
+					<h2>Hello, {{request.user}}</h2>
+					<h2>Welcome to Hadoop web service.</h2><br>
+					<a href="/job/" class="btn btn-success">Here to start</a><br><br>
+					<img src='http://insidebigdata.com/wp-content/uploads/2013/10/Hadoop_elephants.jpg'>
+					
+				{% else %}
+					<h2>Hello, Guest</h2>
+					<h2>Welcome to Hadoop web service.</h2><br>
+					<a href="/accounts/login/" class="btn btn-success">Login to start</a><br><br>
+					<img src='http://insidebigdata.com/wp-content/uploads/2013/10/Hadoop_elephants.jpg'>
+				{% endif %}
+				
+          </div>
+    
+        </div>
+
+      </div>
+	  
+	</div>
+	
+{% endblock %}

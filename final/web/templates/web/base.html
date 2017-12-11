@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block head_title %}{% endblock head_title %}</title>
+
+	{% load staticfiles %}
+	<!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" media="screen">
+    <link rel="stylesheet" href="{% static "css/custom.min.css" %}">
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand">Concert</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+	
+	<div class="container">
+
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-8 col-md-7 col-sm-6">
+	        
+				{% if request.user.is_authenticated %}
+					<h2>Welcome, {{request.user}}</h2>
+				{% else %}
+					<p class="lead"><a href="/accounts/login/">please login! (先不要按，還沒寫好)</a></p>
+				{% endif %}
+				
+				{% block body %}
+				{% block content %}
+				{% endblock content %}
+				{% endblock body %}
+				{% block extra_body %}
+				{% endblock extra_body %}
+				
+          </div>
+    
+        </div>
+
+      </div>
+	  
+	</div>
+	
+	
+
+</body>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+	{% block scripts %}{% endblock %}
+</html>
